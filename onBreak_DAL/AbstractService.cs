@@ -13,7 +13,7 @@ namespace onBreak_DAL
         public abstract void addEntity(T entity);
         public abstract void updEntity(T entity, object campo);
         public abstract void delEntity(Object pk);
-        public abstract List<T> getEntiies();
+        public abstract List<T> getEntities();
         public abstract T getEntity(Object pk);
 
 

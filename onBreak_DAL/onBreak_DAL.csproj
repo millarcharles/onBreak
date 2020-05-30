@@ -82,7 +82,9 @@
       <DependentUpon>onBreakModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceActividad.cs" />
     <Compile Include="ServiceCliente.cs" />
+    <Compile Include="ServiceTipo.cs" />
     <Compile Include="TipoEmpresa.cs">
       <DependentUpon>onBreakModel.tt</DependentUpon>
     </Compile>

@@ -28,7 +28,7 @@ namespace onBreak_DAL
             }
         }
 
-        public override List<Cliente> getEntiies()
+        public override List<Cliente> getEntities()
         {
             return em.Clientes.ToList<Cliente>();
         }

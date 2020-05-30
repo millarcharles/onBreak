@@ -11,40 +11,26 @@
         <CollectionViewSource x:Key="clienteViewSource" d:DesignSource="{d:DesignInstance {x:Type onBreak_DAL:Cliente}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
-
-        <Grid x:Name="grid1" VerticalAlignment="Top" Margin="220,96,0,0" HorizontalAlignment="Left" DataContext="{StaticResource clienteViewSource}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Direccion:"/>
-            <TextBox x:Name="direccionTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Id Actividad Empresa:"/>
-            <TextBox x:Name="idActividadEmpresaTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Id Tipo Empresa:"/>
-            <TextBox x:Name="idTipoEmpresaTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Mail Contacto:"/>
-            <TextBox x:Name="mailContactoTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Nombre Contacto:"/>
-            <TextBox x:Name="nombreContactoTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Razon Social:"/>
-            <TextBox x:Name="razonSocialTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Rut Cliente:"/>
-            <TextBox x:Name="rutClienteTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-            <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Telefono:"/>
-            <TextBox x:Name="telefonoTextBox" Width="120" VerticalAlignment="Center"  Grid.Row="7" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
-        </Grid>
-        <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="530,96,0,0" VerticalAlignment="Top" Width="75" Click="button_Click_1"/>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <DockPanel Grid.ColumnSpan="3" Grid.RowSpan="3" HorizontalAlignment="Center">
+                <StackPanel Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="2" Margin="0 0 90 0" HorizontalAlignment="Center"  Orientation="Horizontal">
+                    <Button  Width="100" Height="50" Content="CLIENTEad" Margin="15 0" x:Name="navToClienteAd" Click="navToClienteAd_Click"/>
+                    <Button  Width="100" Height="50" Content="CLIENTEli"  Margin="15 0" x:Name="navToClienteLi" Click="navToClienteLi_Click"/>
+                </StackPanel>
+                <StackPanel Grid.Column="0" Grid.Row="1"  Orientation="Horizontal">
+                    <Button  Width="100" Height="50" Content="Contratoad" Margin="15 0" x:Name="navToContratoAd"/>
+                    <Button  Width="100" Height="50" Content="Contratoli"   Margin="15 0" x:Name="navToContratoLi"/>
+                </StackPanel>
+            </DockPanel>
+        </Grid>
+    
 </Window>
