@@ -122,6 +122,7 @@
     <Compile Include="ModCliente\ClienteLista.xaml.cs">
       <DependentUpon>ClienteLista.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ModCliente\ClienteViewModel.cs" />
     <Compile Include="ModContrato\ContratoAdmin.xaml.cs">
       <DependentUpon>ContratoAdmin.xaml</DependentUpon>
     </Compile>
