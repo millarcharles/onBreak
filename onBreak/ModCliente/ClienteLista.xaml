@@ -28,7 +28,9 @@
                    Grid.Row="0" Grid.Column="1" Foreground="white" 
                    FontSize="34" HorizontalAlignment="Center"/>
         <TextBlock/>
-        <DataGrid x:Name="ClientesGrid" Grid.Row="1" Grid.Column="1" ItemsSource="{Binding /, Source={StaticResource clienteViewSource}}" SelectedCellsChanged="ClientesGrid_SelectedCellsChanged">
+        <DataGrid x:Name="ClientesGrid" Grid.Row="1" Grid.Column="1"
+                  ItemsSource="{Binding /, Source={StaticResource clienteViewSource}}" 
+                  SelectionChanged="ClientesGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="RUT"  Binding="{Binding Path=RutCliente}"/>
                 <DataGridTextColumn Header="Razon Social"  Binding="{Binding Path=RazonSocial}"/>

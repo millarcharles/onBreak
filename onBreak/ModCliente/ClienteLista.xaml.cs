@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
@@ -49,14 +50,14 @@ namespace onBreak.ModCliente
             List<Cliente> l_Clientes= _service.getEntities();
             foreach (Cliente c in l_Clientes)
             {
-                ClientesGrid.Items.Add(new {RutCliente = c.RutCliente,
+                ClientesGrid.Items.Add(new Cliente {RutCliente = c.RutCliente,
                                             RazonSocial = c.RazonSocial,
                                             NombreContacto = c.NombreContacto,
                                             MailContacto = c.MailContacto,
                                             Direccion = c.Direccion,
                                             Telefono = c.Telefono,
-                                            TipoEmpresa = c.TipoEmpresa.Descripcion,
-                                            ActividadEmpresa = c.ActividadEmpresa.Descripcion,
+                                            TipoEmpresa = c.TipoEmpresa,
+                                            ActividadEmpresa = c.ActividadEmpresa
 
                 } );
 
@@ -68,16 +69,14 @@ namespace onBreak.ModCliente
 
         private void ClientesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            foreach (var item in e.AddedItems) { 
-            
+
+
+            Cliente _sel = (Cliente)ClientesGrid.SelectedItem;
+            Debug.WriteLine(_sel.MailContacto);
+
+
+
             }
-            
-        }
-
-        private void ClientesGrid_SelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
-        {
-
 
         }
-    }
 }
