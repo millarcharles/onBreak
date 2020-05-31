@@ -69,7 +69,7 @@ namespace onBreak.ModCliente
 
         private void ClientesGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            btnEdit.Visibility = Visibility.Visible;
 
             Cliente _sel = (Cliente)ClientesGrid.SelectedItem;
             Debug.WriteLine(_sel.MailContacto);
@@ -78,5 +78,11 @@ namespace onBreak.ModCliente
 
             }
 
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            ClienteAdmin clienteEdit = new ClienteAdmin((Cliente)ClientesGrid.SelectedItem);
+            clienteEdit.Show();
+
         }
+    }
 }

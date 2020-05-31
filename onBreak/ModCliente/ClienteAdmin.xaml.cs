@@ -20,12 +20,26 @@ namespace onBreak.ModCliente
     /// </summary>
     public partial class ClienteAdmin : Window
     {
-   
-    
-        public ClienteAdmin()
+
+
+        //ctor con parametro
+        public ClienteAdmin(Cliente _clienteinpt)
         {
             InitializeComponent();
-            
+            rutClienteTextBox.Text = _clienteinpt.RutCliente;
+            razonSocialTextBox.Text = _clienteinpt.RazonSocial;
+            nombreContactoTextBox.Text = _clienteinpt.NombreContacto;
+            mailContactoTextBox.Text = _clienteinpt.MailContacto;
+            telefonoTextBox.Text = _clienteinpt.Telefono;
+            idActividadEmpresaTextBox.Text = _clienteinpt.ActividadEmpresa.Descripcion;
+            idTipoEmpresaTextBox.Text = _clienteinpt.TipoEmpresa.Descripcion;
+            direccionTextBox.Text = _clienteinpt.Direccion;
+        }
+
+
+        public ClienteAdmin()
+        {
+            InitializeComponent();    
             
         }
 

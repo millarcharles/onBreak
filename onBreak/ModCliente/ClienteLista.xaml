@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:onBreak.ModCliente"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:onBreak_DAL="clr-namespace:onBreak_DAL;assembly=onBreak_DAL" x:Class="onBreak.ModCliente.ClienteLista"
         mc:Ignorable="d"
         Title="ClienteLista" Height="450" Width="800" Loaded="Window_Loaded">
@@ -43,15 +44,12 @@
                 
             </DataGrid.Columns>
         </DataGrid>
-        <!-- = c.RutCliente,
-                                            RazonSocial = c.RazonSocial,
-                                            NombreContacto = c.NombreContacto,
-                                            MailContacto = c.MailContacto,
-                                            Direccion = c.Direccion,
-                                            Fono = c.Telefono,
-                                            Tip = c.TipoEmpresa,
-                                            Actividad =c.ActividadEmpresa,-->
 
+        <Button x:Name="btnEdit" Grid.Column="0" Grid.Row="1" Background="Transparent" VerticalAlignment="Top" 
+                Margin="0 30" Visibility="Hidden" Click="btnEdit_Click">
+            <materialDesign:PackIcon Kind="Pencil" />
+        </Button>
+        
 
     </Grid>
 </Window>
