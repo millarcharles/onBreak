@@ -227,21 +227,37 @@ namespace onBreak.ModCliente
           return false;
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            checkCampos();
+        private void button_Click(object sender, RoutedEventArgs e) {
+
+            camposNotN();
+
+            }
+
+
+
+        public bool camposNotN() {
+
+            ValidationResponse _validationResponse = checkCampos();
+            if (!_validationResponse._successful)
+            {
+                MessageBox.Show("El campo \"" + _validationResponse._element + "\" No puede estar vacio");
+                return false;
+
+            }
+            return true;
+
 
         }
 
         public ValidationResponse checkCampos() {
             
             
-            ValidationResponse _response = new ValidationResponse();
+            ValidationResponse _response = new ValidationResponse(true, null);
             
 
             foreach (UIElement prop in gridCliente.Children)
             {
-         if (Grid.GetColumn(prop) == 1)
+                    if (Grid.GetColumn(prop) == 1)
                 {
                     if (prop.GetType().Equals(typeof(TextBox)))
                     {
@@ -250,9 +266,9 @@ namespace onBreak.ModCliente
                         if (String.IsNullOrWhiteSpace((prop as TextBox).Text))
                         {
                             // caso txtbx vacia
-                            _response = new ValidationResponse(false, prop);
+                            _response = new ValidationResponse(false, (prop as TextBox).Name);
                         }
-                        else { Debug.WriteLine((prop as TextBox).Text); }
+                        else {  }
                     }
                     else
                     {//caso es combobox
@@ -260,11 +276,11 @@ namespace onBreak.ModCliente
                         if ( (prop as ComboBox).SelectedValue == null ) {
 
                             // caso cmbx vacia
-                            _response = new ValidationResponse(false, prop);
+                            _response = new ValidationResponse(false, (prop as ComboBox).Name);
                         }
                         
                         
-                        Debug.WriteLine((prop as ComboBox).SelectedValue);
+                        
                     }
                 }
 
