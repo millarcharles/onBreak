@@ -1,7 +1,10 @@
-﻿using onBreak_DAL;
+﻿using MahApps.Metro.Controls;
+using onBreak_DAL;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,22 +21,55 @@ namespace onBreak.ModCliente
     /// <summary>
     /// Interaction logic for ClienteAdmin.xaml
     /// </summary>
-    public partial class ClienteAdmin : Window
+    public partial class ClienteAdmin : MetroWindow
     {
+        public Cliente _clienteEdit;
+        ServiceCliente _clientes = new ServiceCliente();
+
 
 
         //ctor con parametro
         public ClienteAdmin(Cliente _clienteinpt)
         {
             InitializeComponent();
+            
+            
             rutClienteTextBox.Text = _clienteinpt.RutCliente;
+            rutClienteTextBox.IsEnabled = false;
             razonSocialTextBox.Text = _clienteinpt.RazonSocial;
             nombreContactoTextBox.Text = _clienteinpt.NombreContacto;
             mailContactoTextBox.Text = _clienteinpt.MailContacto;
             telefonoTextBox.Text = _clienteinpt.Telefono;
-            idActividadEmpresaTextBox.Text = _clienteinpt.ActividadEmpresa.Descripcion;
-            idTipoEmpresaTextBox.Text = _clienteinpt.TipoEmpresa.Descripcion;
             direccionTextBox.Text = _clienteinpt.Direccion;
+            _clienteEdit = _clienteinpt;
+
+
+            _clienteEdit = _clientes.getEntity(_clienteinpt.RutCliente);
+            this.DataContext = _clienteEdit;
+
+            TipoEmpresaComboBox.SelectedValue = _clienteEdit.IdTipoEmpresa;
+            ActividadComboBox.SelectedValue = _clienteEdit.IdActividadEmpresa;
+
+        }
+
+
+        private Cliente getClienteForm() {
+
+            Cliente _cliente = new Cliente();
+
+
+            _cliente.RutCliente = rutClienteTextBox.Text;
+            _cliente.RazonSocial = razonSocialTextBox.Text;
+            _cliente.NombreContacto = nombreContactoTextBox.Text;
+            _cliente.MailContacto = mailContactoTextBox.Text;
+            _cliente.Telefono = telefonoTextBox.Text;
+            _cliente.IdActividadEmpresa = ((int)ActividadComboBox.SelectedValue);
+            _cliente.IdTipoEmpresa = ((int)TipoEmpresaComboBox.SelectedValue);
+            _cliente.Direccion = direccionTextBox.Text;
+
+            return _cliente;
+
+
         }
 
 
@@ -43,8 +79,7 @@ namespace onBreak.ModCliente
             
         }
 
-        public List<ActividadEmpresa> _actividades { get; set; }
-        public List<TipoEmpresa> _tipos { get; set; }
+       
 
         public void poblarCombos() {
 
@@ -58,8 +93,8 @@ namespace onBreak.ModCliente
             List<TipoEmpresa> l_tipoempresa = _service.getEntities();
             foreach (TipoEmpresa t in l_tipoempresa) {
 
-                comboBoxX.Items.Add(t);
-            } 
+                TipoEmpresaComboBox.Items.Add(  new KeyValuePair<int,string>(t.IdTipoEmpresa,t.Descripcion)  );
+                 } 
         }
 
         public void poblarActiv()
@@ -68,7 +103,7 @@ namespace onBreak.ModCliente
                 List<ActividadEmpresa> l_actividadEmpresas = _servic.getEntities();
                 foreach (ActividadEmpresa a in l_actividadEmpresas) 
             {
-                comboBoxActividad.Items.Add(a);
+                ActividadComboBox.Items.Add(new KeyValuePair<int, string>(a.IdActividadEmpresa, a.Descripcion));
                
             }
 
@@ -85,7 +120,8 @@ namespace onBreak.ModCliente
             System.Windows.Data.CollectionViewSource clienteViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("clienteViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // clienteViewSource.Source = [generic data source]
-            
+
+              
             System.Windows.Data.CollectionViewSource tipoEmpresaViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("tipoEmpresaViewSource")));
             // Load data by setting the CollectionViewSource.Source property:
             // tipoEmpresaViewSource.Source = [generic data source]
@@ -100,8 +136,7 @@ namespace onBreak.ModCliente
             nombreContactoTextBox.Text = string.Empty;
             mailContactoTextBox.Text = string.Empty;
             telefonoTextBox.Text = string.Empty;
-            idActividadEmpresaTextBox.Text = string.Empty;
-            idTipoEmpresaTextBox.Text = string.Empty;
+            
             direccionTextBox.Text = string.Empty;
         }
 
@@ -111,6 +146,7 @@ namespace onBreak.ModCliente
         {
             ServiceCliente _servicio = new ServiceCliente();
             Cliente _cliente = new Cliente();
+            _cliente = getClienteForm();
 
 
             _cliente.RutCliente = rutClienteTextBox.Text;
@@ -118,8 +154,8 @@ namespace onBreak.ModCliente
             _cliente.NombreContacto = nombreContactoTextBox.Text;
             _cliente.MailContacto = mailContactoTextBox.Text;
             _cliente.Telefono = telefonoTextBox.Text;
-            _cliente.IdActividadEmpresa = int.Parse(idActividadEmpresaTextBox.Text);
-            _cliente.IdTipoEmpresa = int.Parse(idTipoEmpresaTextBox.Text);
+            _cliente.IdActividadEmpresa = ((int) ActividadComboBox.SelectedValue); 
+            _cliente.IdTipoEmpresa = ((int)TipoEmpresaComboBox.SelectedValue);
             _cliente.Direccion = direccionTextBox.Text;
             try
             {
@@ -134,7 +170,6 @@ namespace onBreak.ModCliente
 
             }
         }
-
 
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,17 +41,28 @@ namespace onBreak_DAL
             {
                 throw new ArgumentException("Cliente no encontrado");
             }
-            else {
+            else
+            {
                 return cBus;
             }
 
-            }
-
-        public override void updEntity(Cliente entity, object campo)
-        {
-            throw new NotImplementedException();
         }
-    }
 
-  
+        public override void updEntity(object pk, Cliente clUpdt)
+        {
+            Cliente cQry = em.Clientes.Where(q => q.RutCliente == (string)pk).First<Cliente>();
+            if (cQry == null)
+            {
+                throw new ArgumentException("Cliente no encontrado");
+            }
+            else
+            {
+                cQry = clUpdt;
+                em.SaveChanges();
+
+            }
+        }
+
+
+    }
 }

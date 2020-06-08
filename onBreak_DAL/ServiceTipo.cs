@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace onBreak_DAL
 {
-    public class ServiceTipo : AbstractService<TipoEmpresa>
-    {
+    public class ServiceTipo : AbstractService<TipoEmpresa> 
+    { 
         public override void addEntity(TipoEmpresa entity)
         {
             throw new NotImplementedException();

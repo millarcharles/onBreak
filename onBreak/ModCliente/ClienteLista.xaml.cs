@@ -1,4 +1,5 @@
-﻿using onBreak_DAL;
+﻿using MahApps.Metro.Controls;
+using onBreak_DAL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,9 +23,9 @@ namespace onBreak.ModCliente
     /// <summary>
     /// Interaction logic for ClienteLista.xaml
     /// </summary>
-    public partial class ClienteLista : Window
+    public partial class ClienteLista : MetroWindow
     {
-        private readonly ICollectionView _clienteView;
+        
         OnBreakEntities _context = new OnBreakEntities();
 
 

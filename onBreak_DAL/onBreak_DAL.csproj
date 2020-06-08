@@ -40,6 +40,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -63,6 +64,8 @@
     <Compile Include="Contrato.cs">
       <DependentUpon>onBreakModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ConverterAct.cs" />
+    <Compile Include="ConverterTipo.cs" />
     <Compile Include="ModalidadServicio.cs">
       <DependentUpon>onBreakModel.tt</DependentUpon>
     </Compile>
