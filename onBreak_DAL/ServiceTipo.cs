@@ -28,9 +28,10 @@ namespace onBreak_DAL
             throw new NotImplementedException();
         }
 
-        public override void updEntity(TipoEmpresa entity, object campo)
+        public override void updEntity(object pk, TipoEmpresa entity)
         {
             throw new NotImplementedException();
         }
+
     }
 }

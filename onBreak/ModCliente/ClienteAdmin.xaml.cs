@@ -15,6 +15,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using onBreak.Resources.Errors;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
 
 namespace onBreak.ModCliente
 {
@@ -28,14 +31,17 @@ namespace onBreak.ModCliente
 
 
 
-        //ctor con parametro
+        //ctor con parametro, recibe cliente desde lista
         public ClienteAdmin(Cliente _clienteinpt)
         {
+
+
             InitializeComponent();
             
             
             rutClienteTextBox.Text = _clienteinpt.RutCliente;
             rutClienteTextBox.IsEnabled = false;
+            btnBuscarRutCliente.IsEnabled = false;
             razonSocialTextBox.Text = _clienteinpt.RazonSocial;
             nombreContactoTextBox.Text = _clienteinpt.NombreContacto;
             mailContactoTextBox.Text = _clienteinpt.MailContacto;
@@ -49,7 +55,19 @@ namespace onBreak.ModCliente
 
             TipoEmpresaComboBox.SelectedValue = _clienteEdit.IdTipoEmpresa;
             ActividadComboBox.SelectedValue = _clienteEdit.IdActividadEmpresa;
+            btnBuscarRutCliente.IsEnabled = false;
+            btnAgregarCliente.Visibility = Visibility.Hidden;
 
+        }
+        //constructor sin parametros, forma vacia para ingreso de cliente
+        public ClienteAdmin()
+        {
+            InitializeComponent();
+
+
+            //se esconden controles de modificacion y eliminacion de cliente
+            btnModificarCliente.Visibility = Visibility.Hidden;
+            btnEliminarCliente.Visibility = Visibility.Hidden;
         }
 
 
@@ -72,15 +90,7 @@ namespace onBreak.ModCliente
 
         }
 
-
-        public ClienteAdmin()
-        {
-            InitializeComponent();    
-            
-        }
-
        
-
         public void poblarCombos() {
 
             poblarTipos();
@@ -136,32 +146,27 @@ namespace onBreak.ModCliente
             nombreContactoTextBox.Text = string.Empty;
             mailContactoTextBox.Text = string.Empty;
             telefonoTextBox.Text = string.Empty;
-            
             direccionTextBox.Text = string.Empty;
+            TipoEmpresaComboBox.SelectedIndex = -1;
+            ActividadComboBox.SelectedIndex = -1;
+            
+            
         }
 
 
+  
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void btnModificarCliente_Click(object sender, RoutedEventArgs e)
         {
             ServiceCliente _servicio = new ServiceCliente();
-            Cliente _cliente = new Cliente();
-            _cliente = getClienteForm();
+            Cliente _cliente = getClienteForm();
 
 
-            _cliente.RutCliente = rutClienteTextBox.Text;
-            _cliente.RazonSocial = razonSocialTextBox.Text;
-            _cliente.NombreContacto = nombreContactoTextBox.Text;
-            _cliente.MailContacto = mailContactoTextBox.Text;
-            _cliente.Telefono = telefonoTextBox.Text;
-            _cliente.IdActividadEmpresa = ((int) ActividadComboBox.SelectedValue); 
-            _cliente.IdTipoEmpresa = ((int)TipoEmpresaComboBox.SelectedValue);
-            _cliente.Direccion = direccionTextBox.Text;
             try
             {
-                _servicio.addEntity(_cliente);
-                MessageBox.Show("Cliente Agregado con exito");
-                LimpiarCampos();
+                _servicio.updEntity(_cliente.RutCliente,_cliente);
+                MessageBox.Show("Cliente Modificado con exito");
+                
 
             }
             catch (Exception ex)
@@ -171,5 +176,104 @@ namespace onBreak.ModCliente
             }
         }
 
+        private void btnEliminarCliente_Click(object sender, RoutedEventArgs e)
+        {
+            ServiceCliente _servicio = new ServiceCliente();
+            Cliente _cliente = new Cliente(); 
+              _cliente = getClienteForm();
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    _servicio.delEntity((string)_cliente.RutCliente);
+                    MessageBox.Show("Cliente Eliminado con exito");
+                    LimpiarCampos();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.InnerException.ToString());
+
+                }
+            }
+            else { MessageBox.Show("Operacion cancelada"); }
+
+        }
+
+        private void btnAgregarCliente_Click(object sender, RoutedEventArgs e)
+        {
+                ServiceCliente _servicio = new ServiceCliente();
+                Cliente _cliente = getClienteForm();
+
+
+                try
+                {
+                    _servicio.addEntity(_cliente);
+                    MessageBox.Show("Cliente Agregado con exito");
+                    LimpiarCampos();
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.InnerException.ToString());
+
+                }
+            }
+        private  bool ValidarNullorWhi(TextBox campo) {
+            if (string.IsNullOrWhiteSpace(campo.Text))
+                return true;
+            
+          return false;
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            checkCampos();
+
+        }
+
+        public ValidationResponse checkCampos() {
+            
+            
+            ValidationResponse _response = new ValidationResponse();
+            
+
+            foreach (UIElement prop in gridCliente.Children)
+            {
+         if (Grid.GetColumn(prop) == 1)
+                {
+                    if (prop.GetType().Equals(typeof(TextBox)))
+                    {
+                        // caso es textbox
+
+                        if (String.IsNullOrWhiteSpace((prop as TextBox).Text))
+                        {
+                            // caso txtbx vacia
+                            _response = new ValidationResponse(false, prop);
+                        }
+                        else { Debug.WriteLine((prop as TextBox).Text); }
+                    }
+                    else
+                    {//caso es combobox
+
+                        if ( (prop as ComboBox).SelectedValue == null ) {
+
+                            // caso cmbx vacia
+                            _response = new ValidationResponse(false, prop);
+                        }
+                        
+                        
+                        Debug.WriteLine((prop as ComboBox).SelectedValue);
+                    }
+                }
+
+
+            }
+
+            return _response;
+        
+        
+        }
     }
 }

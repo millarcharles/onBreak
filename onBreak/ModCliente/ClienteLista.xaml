@@ -35,6 +35,8 @@
         <TextBlock/>
         <DataGrid x:Name="ClientesGrid" Grid.Row="1" Grid.Column="1"
                   ItemsSource="{Binding /, Source={StaticResource clienteViewSource}}" 
+                  SelectionUnit="FullRow"
+                  
                   SelectionChanged="ClientesGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="RUT"  Binding="{Binding Path=RutCliente}"/>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:onBreak.ModCliente"
+        xmlns:err="clr-namespace:onBreak.Resources.Errors"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
         GlowBrush="{DynamicResource AccentColorBrush}"
@@ -23,9 +24,19 @@
     <Grid >
 
         <Grid.Resources>
-
-          
-
+            <ControlTemplate x:Key="errorTemplate">
+                <Border BorderBrush="OrangeRed" BorderThickness="2">
+                    <Grid>
+                        <AdornedElementPlaceholder/>
+                        <TextBlock/>
+                        
+                        
+                    </Grid>
+                    
+                    
+                </Border>
+                
+            </ControlTemplate>
 
         </Grid.Resources>
 
@@ -46,7 +57,7 @@
 
 
 
-        <Grid x:Name="grid1" Grid.Column="1"  HorizontalAlignment="Left" Margin="82,36,0,0" Grid.Row="1" VerticalAlignment="Top">
+        <Grid x:Name="gridCliente" Grid.Column="1"  HorizontalAlignment="Left" Margin="82,36,0,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -64,10 +75,12 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Rut Cliente:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="rutClienteTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding RutCliente, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <ToggleButton Style="{StaticResource MahApps.Styles.Button.Circle}" Grid.Column="3" Width="35">
+            <TextBox x:Name="rutClienteTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0"
+                     Text="{Binding RutCliente, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <ToggleButton x:Name="btnBuscarRutCliente" Style="{StaticResource MahApps.Styles.Button.Circle}" Grid.Column="3" Width="35">
             <materialDesign:PackIcon Kind="AccountSearch" Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
             </ToggleButton>
+          
             
             <Label Content="Razon Social:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="razonSocialTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding RazonSocial, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
@@ -88,33 +101,38 @@
            
 
         </Grid>
-        <Button x:Name="button" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="372,39,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="button_Click"/>
+        <Button x:Name="button" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="372,39,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="button_Click" />
 
+        
         <StackPanel Grid.Row="1" Grid.Column="0">
             <Button Grid.Row="1"
+                x:Name="btnAgregarCliente"
                 Style="{StaticResource MaterialDesignFlatButton}"
                 ToolTip="MaterialDesignFlatButton">
                 <materialDesign:PackIcon Kind="AccountPlus" Background="IndianRed" Foreground="White" />
             </Button>
-            <Button 
+            <Button
+                x:Name="btnModificarCliente"
+                Click="btnModificarCliente_Click"
                 Style="{StaticResource MaterialDesignFlatButton}"
-                ToolTip="MaterialDesignFlatButton">
+                ToolTip="MaterialDesignFlatButton" HorizontalAlignment="Right" Width="55">
                 
                 <materialDesign:PackIcon Kind="AccountEdit" Width="25" Height="25" />
             </Button>
             
             <Button 
+                x:Name="btnEliminarCliente"
                 Style="{StaticResource MaterialDesignFlatButton}"
-                ToolTip="MaterialDesignFlatButton">
+                ToolTip="MaterialDesignFlatButton" Click="btnEliminarCliente_Click">
 
                 <materialDesign:PackIcon Kind="AccountRemove" Width="25" Height="25" />
             </Button>
 
+
         </StackPanel>
-        
 
 
-       
+
 
     </Grid>
 </metro:MetroWindow>

@@ -32,6 +32,7 @@ namespace onBreak.ModCliente
         public ClienteLista()
         {
             InitializeComponent();
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

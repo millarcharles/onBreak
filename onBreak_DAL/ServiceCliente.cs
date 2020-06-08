@@ -57,7 +57,14 @@ namespace onBreak_DAL
             }
             else
             {
-                cQry = clUpdt;
+                cQry.NombreContacto = clUpdt.NombreContacto;
+                cQry.RazonSocial = clUpdt.RazonSocial;
+                cQry.Direccion = clUpdt.Direccion;
+                cQry.Telefono= clUpdt.Telefono;
+                cQry.MailContacto = clUpdt.MailContacto;
+                cQry.TipoEmpresa = clUpdt.TipoEmpresa;
+                cQry.ActividadEmpresa = clUpdt.ActividadEmpresa;
+                
                 em.SaveChanges();
 
             }

@@ -9,8 +9,10 @@
         BorderThickness="1"
         xmlns:onBreak_DAL="clr-namespace:onBreak_DAL;assembly=onBreak_DAL" x:Class="onBreak.MainWindow"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded"
+        Icon="/Resources/ico/dark_logo_white_background.jpg" >
     <Window.Resources>
+
         <CollectionViewSource x:Key="clienteViewSource" d:DesignSource="{d:DesignInstance {x:Type onBreak_DAL:Cliente}, CreateList=True}"/>
     </Window.Resources>
     <Grid>
