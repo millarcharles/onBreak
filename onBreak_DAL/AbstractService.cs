@@ -15,7 +15,7 @@ namespace onBreak_DAL
         public abstract void delEntity(Object pk);
         public abstract List<T> getEntities();
         public abstract T getEntity(Object pk);
-
+        public abstract bool isEntity(Object pk);
 
     }
 }

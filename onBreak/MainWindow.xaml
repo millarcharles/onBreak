@@ -3,8 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:onBreak"
+        xmlns:local="clr-namespace:onBreak.Resources"
         xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         GlowBrush="{DynamicResource AccentColorBrush}"
         BorderThickness="1"
         xmlns:onBreak_DAL="clr-namespace:onBreak_DAL;assembly=onBreak_DAL" x:Class="onBreak.MainWindow"
@@ -36,6 +37,8 @@
                     <Button  Width="100" Height="50" Content="Contratoli"   Margin="15 0" x:Name="navToContratoLi"/>
                 </StackPanel>
             </DockPanel>
+        <local:ClienteButton></local:ClienteButton>
+        
         </Grid>
     
 </metro:MetroWindow>

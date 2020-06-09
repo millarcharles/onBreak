@@ -161,8 +161,8 @@ namespace onBreak.ModCliente
             ServiceCliente _servicio = new ServiceCliente();
             Cliente _cliente = getClienteForm();
 
-
-            try
+            if (camposNotN()) { 
+                try
             {
                 _servicio.updEntity(_cliente.RutCliente,_cliente);
                 MessageBox.Show("Cliente Modificado con exito");
@@ -174,6 +174,7 @@ namespace onBreak.ModCliente
                 MessageBox.Show(ex.InnerException.ToString());
 
             }
+            }
         }
 
         private void btnEliminarCliente_Click(object sender, RoutedEventArgs e)
@@ -181,8 +182,8 @@ namespace onBreak.ModCliente
             ServiceCliente _servicio = new ServiceCliente();
             Cliente _cliente = new Cliente(); 
               _cliente = getClienteForm();
-            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Are you sure?", "Delete Confirmation", System.Windows.MessageBoxButton.YesNo);
-            if (messageBoxResult == MessageBoxResult.Yes)
+            MessageBoxResult messageBoxResult = System.Windows.MessageBox.Show("Desea Eliminar Cliente de los Registros?", "Confirmacion de Elinacion", System.Windows.MessageBoxButton.OKCancel);
+            if (messageBoxResult == MessageBoxResult.OK)
             {
                 try
                 {
@@ -206,20 +207,35 @@ namespace onBreak.ModCliente
                 ServiceCliente _servicio = new ServiceCliente();
                 Cliente _cliente = getClienteForm();
 
+            if (!_servicio.isEntity(_cliente.RutCliente))
+            {
 
-                try
-                {
-                    _servicio.addEntity(_cliente);
-                    MessageBox.Show("Cliente Agregado con exito");
-                    LimpiarCampos();
+                if (camposNotN()) {
 
+                    try
+                    {
+                        _servicio.addEntity(_cliente);
+                        MessageBox.Show("Cliente Agregado con exito");
+                        LimpiarCampos();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.InnerException.ToString());
+
+                    }
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.InnerException.ToString());
 
-                }
+
+
+
+
             }
+            else {
+
+                MessageBox.Show("ERROR:  El Rut \""+_cliente.RutCliente+"\" ya fue registrado en la Base de Datos");
+            }
+        }
         private  bool ValidarNullorWhi(TextBox campo) {
             if (string.IsNullOrWhiteSpace(campo.Text))
                 return true;
@@ -290,6 +306,11 @@ namespace onBreak.ModCliente
             return _response;
         
         
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            Debug.WriteLine(_clientes.isEntity(rutClienteTextBox.Text));
         }
     }
 }

@@ -101,6 +101,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Resources\ClienteButton.xaml.cs">
+      <DependentUpon>ClienteButton.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Resources\Errors\minCharacterRule.cs" />
     <Compile Include="Resources\Errors\ValidationResponse.cs" />
     <Page Include="MainWindow.xaml">
@@ -128,6 +131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ModContrato\ContratoLista.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\ClienteButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -222,7 +229,15 @@
   <ItemGroup>
     <Resource Include="Resources\ico\white_logo_dark_background.jpg" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\ico\iconfinder_User_Accounts_alt_98787.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ico\iconfinder_Wordpad_98887.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ico\iconfinder_User_Accounts_99370.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

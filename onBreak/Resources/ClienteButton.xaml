@@ -1,0 +1,71 @@
+﻿<UserControl x:Class="onBreak.Resources.ClienteButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:onBreak.Resources" 
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="120" d:DesignWidth="120">
+
+    <UserControl.Resources>
+        <Style x:Key="activeWhenMouseOver"  TargetType="{x:Type Grid}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="False">
+                    <Setter Property="Opacity" Value="0"></Setter>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Opacity" Value="1"></Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+    </UserControl.Resources>
+
+
+    <Grid Width="120" Height="120">
+
+        <Image Source="/Resources/ico/iconfinder_User_Accounts_99370.png" Height="120" Width="120" />
+
+        <Grid x:Name="inner" Style="{StaticResource activeWhenMouseOver}" Width="120" Height="120">
+            <Rectangle Width="120" Height="120"  Fill="Black" Opacity=".60"/>
+
+
+            <Button  x:Name="btnAdminClientes"   Background="{x:Null}" BorderBrush="{x:Null}"
+                     Foreground="Black" 
+                     FontSize="10" HorizontalAlignment="Left" Margin="25 65 0 0"
+                     Width="40" Height="40" BorderThickness="0" Padding="0"
+                     Click="btnAdminClientes_Click" 
+                     
+                     >
+                <materialDesign:PackIcon 
+                    Kind="AccountEdit" 
+                    Height="35" 
+                    Width="35" Foreground="DimGray" Background="Black" Opacity=".75" />
+            </Button>
+
+
+            <Button  x:Name="btnListaClientes"   Background="{x:Null}" BorderBrush="{x:Null}"
+                     Foreground="Black" 
+                     FontSize="10" HorizontalAlignment="Right" Margin="0 65 15 0"
+                     Width="40" Height="40" BorderThickness="0" Padding="0"
+                     Click="btnListaClientes_Click"
+                     >
+                <materialDesign:PackIcon 
+                    Kind="AccountDetails" 
+                    Height="35" 
+                    Width="35" Foreground="DimGray" Background="Black" Opacity=".75" />
+            </Button>
+
+
+
+        </Grid>        
+        
+        
+
+            
+    </Grid>
+
+
+
+</UserControl>

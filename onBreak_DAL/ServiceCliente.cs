@@ -36,16 +36,29 @@ namespace onBreak_DAL
 
         public override Cliente getEntity(object pk)
         {
-            Cliente cBus = em.Clientes.Where(q => q.RutCliente == (string)pk).First<Cliente>();
-            if (cBus == null)
+            Cliente cQry = em.Clientes.Where(q => q.RutCliente == (string)pk).First<Cliente>();
+            if (cQry == null)
             {
                 throw new ArgumentException("Cliente no encontrado");
             }
             else
             {
-                return cBus;
+                return cQry;
             }
 
+        }
+
+        public override bool isEntity(object pk)
+        {
+            if(em.Clientes.Where(q => q.RutCliente == (string)pk).Count() == 0)
+            
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         public override void updEntity(object pk, Cliente clUpdt)

@@ -108,7 +108,8 @@
             <Button Grid.Row="1"
                 x:Name="btnAgregarCliente"
                 Style="{StaticResource MaterialDesignFlatButton}"
-                ToolTip="MaterialDesignFlatButton">
+                ToolTip="MaterialDesignFlatButton"
+                Click="btnAgregarCliente_Click">
                 <materialDesign:PackIcon Kind="AccountPlus" Background="IndianRed" Foreground="White" />
             </Button>
             <Button
@@ -123,13 +124,15 @@
             <Button 
                 x:Name="btnEliminarCliente"
                 Style="{StaticResource MaterialDesignFlatButton}"
-                ToolTip="MaterialDesignFlatButton" Click="btnEliminarCliente_Click">
+                ToolTip="MaterialDesignFlatButton" 
+                Click="btnEliminarCliente_Click">
 
                 <materialDesign:PackIcon Kind="AccountRemove" Width="25" Height="25" />
             </Button>
 
 
         </StackPanel>
+        <Button x:Name="button1" Content="Button" Grid.Column="1" HorizontalAlignment="Left" Margin="552,86,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="button1_Click"/>
 
 
 
